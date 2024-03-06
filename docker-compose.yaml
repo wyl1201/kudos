@@ -1,0 +1,62 @@
+services:
+  mongo1:
+    image: mongo:6
+    hostname: mongo1
+    container_name: mongo1
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - 27017:27017
+    entrypoint:
+      [
+        "mongod",
+        "--replSet",
+        "myReplicaSet",
+        "--bind_ip",
+        "localhost,mongo1"
+      ]
+  mongo2:
+    image: mongo:6
+    hostname: mongo2
+    container_name: mongo2
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - 27018:27017
+    entrypoint:
+      [
+        "mongod",
+        "--replSet",
+        "myReplicaSet",
+        "--bind_ip",
+        "localhost,mongo2"
+      ]
+  mongo3:
+    image: mongo:6
+    hostname: mongo3
+    container_name: mongo3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - 27019:27017
+    entrypoint:
+      [
+        "mongod",
+        "--replSet",
+        "myReplicaSet",
+        "--bind_ip",
+        "localhost,mongo3"
+      ]
+  mongosetup:
+    image: mongo:6
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
+    volumes:
+      - .:/scripts
+    restart: "no"
+    entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
