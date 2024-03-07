@@ -16,7 +16,13 @@ async function main() {
 
   const user1 = await prisma.user.upsert({
     where: { email: 'alvin.wang@wayz.ai' },
-    update: {},
+    update: {
+      profile: {
+        update: {
+          department: 'HR',
+        },
+      },
+    },
     create: {
       email: 'alvin.wang@wayz.ai',
       password: passwordAlvin,
@@ -29,7 +35,13 @@ async function main() {
 
   const user2 = await prisma.user.upsert({
     where: { email: 'sabin@adams.com' },
-    update: {},
+    update: {
+      profile: {
+        update: {
+          department: 'HR',
+        },
+      },
+    },
     create: {
       email: 'sabin@adams.com',
       password: passwordSabin,
@@ -41,13 +53,20 @@ async function main() {
   })
   const user3 = await prisma.user.upsert({
     where: { email: 'alex@ruheni.com' },
-    update: {},
+    update: {
+      profile: {
+        update: {
+          department: 'HR',
+        },
+      },
+    },
     create: {
       email: 'alex@ruheni.com',
       password: passwordAlex,
       profile: {
         firstName: 'Alex',
         lastName: 'Ruheni',
+        department: 'MARKETING',
       },
     },
   })
