@@ -16,7 +16,7 @@
     "@remix-run/node": "^2.8.0",
     "@remix-run/react": "^2.8.0",
     "@remix-run/serve": "^2.8.0",
-    "aws-sdk": "^2.1572.0",
+    "aws-sdk": "^2.1576.0",
     "bcrypt": "^5.1.1",
     "cuid": "^3.0.0",
     "isbot": "^4.1.0",
